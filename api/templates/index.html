@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Credit Risk Analysis</title>
+    <link rel="stylesheet" href="{{ url_for('app_router.load_styles', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <div>
+            <h2>Fill the form with customer data</h2>
+            <p>
+                {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    <ul>
+                    {% for message in messages %}
+                    <li>{{ message }}</li>
+                    {% endfor %}
+                    </ul>
+                {% endif %}
+                {% endwith %}
+            </p>
+        </div>
+        
+        <div>
+            <form action="/" method="post" enctype="multipart/form-data">
+                <label for="first_name">NAME:</label>
+                <input type="text" name="first_name" required>
+
+                <label for="payment_day">PAYMENT DAY:</label>
+                <select name="payment_day" id="payment_day">
+                    <option value="1">1</option>
+                    <option value="5">5</option>
+                    <option value="10">10</option>
+                    <option value="15">15</option>
+                    <option value="20">20</option>
+                    <option value="25">25</option>
+                </select>
+
+                <label for="application_submission_type">APPLICATION SUBMISSION TYPE:</label>
+                <select name="application_submission_type" id="application_submission_type">
+                    <option value="Web">Web</option>
+                    <option value="Carga">Carga</option>
+                </select>
+                
+                <label for="postal_address_type">POSTAL ADDRESS TYPE:</label>
+                <select name="postal_address_type" id="postal_address_type">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                </select>
+                
+                <label for="sex">SEX:</label>
+                <select name="sex" id="sec">
+                    <option value="M">Male</option>
+                    <option value="F">Female</option>
+                    <option value="N">Other</option>
+                    <option value="N">Prefer not to say</option>
+                </select>
+                
+                <label for="marital_status">MARITAL STATUS:</label>
+                <select name="marital_satus" id="marital_status">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                </select>
+                
+                <label for="quant_dependants">QUANT DEPENDANTS:</label>
+                <input type="number" name="quant_dependants">
+                
+                <label for="state_of_birth">STATE OF BIRTH:</label>
+                <input type="text" name="state_of_birth">
+                
+                <label for="city_of_birth">CITY OF BIRTH:</label>
+                <input type="text" name="city_of_birth">
+                
+                <label for="nacionality">NACIONALITY:</label>
+                <select name="nacionality" id="nacionality">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                </select>
+                
+                <label for="residencial_state">RESIDENCIAL STATE:</label>
+                <input type="text" name="residencial_state">
+                
+                <label for="residencial_city">RESIDENCIAL CITY:</label>
+                <input type="text" name="residencial_city">
+                
+                <label for="residencial_borough">RESIDENCIAL BOROUGH:</label>
+                <input type="text" name="residencial_borough">
+                
+                <label for="flag_residencial_phone">FLAG RESIDENCIAL PHONE:</label>
+                <select name="flag_residencial_phone" id="flag_residencial_phone">
+                    <option value="Y">Yes</option>
+                    <option value="N">No</option>
+                </select>
+                
+                <label for="residencial_phone_area_code">RESIDENCIAL PHONE AREA CODE:</label>
+                <input type="text" name="residencial_phone_area_code">
+                
+                <label for="residence_type">RESIDENCE TYPE:</label>
+                <select name="residence_type" id="residence_type">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
+                
+                <label for="months_in_residence">MONTHS IN RESIDENCE:</label>
+                <input type="number" name="months_in_residence">
+                
+                <label for="flag_email">FLAG EMAIL:</label>
+                <select name="flag_email" id="flag_email">
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                </select>
+                
+                <label for="personal_monthly_income">PERSONAL MONTHLY INCOME:</label>
+                <input type="number" name="personal_monthly_income">
+                
+                <label for="other_incomes">OTHER INCOMES:</label>
+                <input type="number" name="other_incomes">
+                
+                <p>Select cards held by applicant:</p>
+                <label for="flag_visa">FLAG VISA:</label>
+                <input class="checkbox" type="checkbox" id="flag_visa" name="flag_visa">
+                <label for="flag_mastercard">FLAG MASTERCARD:</label>
+                <input class="checkbox" type="checkbox" id="flag_mastercard" name="flag_mastercard">
+                <label for="flag_diners">FLAG DINERS:</label>
+                <input class="checkbox" type="checkbox" id="flag_diners" name="flag_diners">
+                <label for="flag_american_express">FLAG AMERICAN EXPRESS:</label>
+                <input class="checkbox" type="checkbox" id="flag_american_express" name="flag_american_express">
+                <label for="flag_other_cards">FLAG OTHER CARDS:</label>
+                <input class="checkbox" type="checkbox" id="flag_other_cards" name="flag_other_cards">
+     
+                <label for="quant_banking_accounts">QUANT BANKING ACCOUNTS:</label>
+                <input type="number" name="quant_banking_accounts">
+                
+                <label for="personal_assets_value">PERSONAL ASSETS VALUE:</label>
+                <input type="text" name="personal_assets_value">
+                
+                <label for="quant_cars">QUANT CARS:</label>
+                <input type="number" name="quant_cars">
+                
+                <label for="company">COMPANY:</label>
+                <select name="company" id="company">
+                    <option value="Y">Yes</option>
+                    <option value="N">No</option>
+                </select>
+                
+                <label for="professional_state">PROFESSIONAL STATE:</label>
+                <input type="text" name="professional_state">
+                
+                <label for="professional_city">PROFESSIONAL CITY:</label>
+                <input type="text" name="professional_city">
+                
+                <label for="professional_borough">PROFESSIONAL BOROUGH:</label>
+                <input type="text" name="professional_borough">
+                
+                <label for="flag_professional_phone">FLAG PROFESSIONAL PHONE:</label>
+                <select name="flag_professional_phone" id="flag_professional_phone">
+                    <option value="Y">Yes</option>
+                    <option value="N">No</option>
+                </select>
+                
+                <label for="professional_phone_area_code">PROFESSIONAL PHONE AREA CODE:</label>
+                <input type="text" name="professional_phone_area_code">
+                
+                <label for="months_in_the_job">MONTHS IN THE JOB:</label>
+                <input type="number" name="months_in_the_job">
+                
+                <label for="profession_code">PROFESSION CODE:</label>
+                <input type="number" name="profession_code" id="profession_code" min="0" max="18">
+                
+                <label for="occupation_type">OCCUPATION TYPE:</label>
+                <select name="occupation_type" id="occupation_type">
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
+                
+                <label for="mate_profession_code">MATE PROFESSION CODE:</label>
+                <input type="number" name="mate_profession_code" id="mate_profession_code" min="0" max="17">
+                
+                <label for="mate_education_level">MATE EDUCATION LEVEL:</label>
+                <input type="number" name="mate_profession_code" id="mate_profession_code" min="0" max="5">
+                
+                <label for="product">PRODUCT:</label>
+                <select name="product" id="product">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="7">7</option>
+                </select>
+                
+                <label for="age">AGE:</label>
+                <input type="number" name="age" min="18" max="110">
+                
+                <label for="residencial_zip_3">RESIDENCIAL ZIP 3:</label>
+                <input type="number" name="residencial_zip_3" min="105" max="999">
+                
+                <label for="professional_zip_3">PROFESSIONAL ZIP 3:</label>
+                <input type="number" name="professional_zip_3" min="105" max="999">
+
+                <button type="submit" id="submit">Submit</button>
+            </form>
+        </div>
+        
+        {% if context %}
+        <div class="result">
+            <h3>Results for {{ name }}:</h3>
+            <p><span class="{{ context['prediction'] }}">{{ context['prediction'] }}</span></p>
+            <p>probability: {{ context['probability'] }}</p>
+        </div>
+        {% endif %}   
+    </div>
+    
+</body>
+</html>
